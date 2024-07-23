@@ -11,6 +11,7 @@ pipeline {
         stage('Clone Sources') {
           steps {
             echo 'dashboard building the application...'
+            echo 'by https://jenkins.sodi9.store/github-webhook/'
             // git 'https://gitlab.com/chiminyau/ci-test.git'
           }
         }
@@ -46,8 +47,9 @@ pipeline {
         // }
         stage('dev') {
           steps {
-            echo 'sales building the application...  now....'
-            sh 'pm2 start npm run dev'
+            echo 'dashboard building the application...  now....'
+            // sh 'npm run dev'
+            sh 'pm2 start "npm run dev" --name dashboard'
           }
         }
         // stage('Build') {
