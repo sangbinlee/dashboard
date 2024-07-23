@@ -76,7 +76,7 @@ pipeline {
                 // sh 'node .output/server/index.mjs'
                 // sh 'export BUILD_ID=dontKillMe'
                 // sh 'pm2 start .output/server/index.mjs -i max --name "dashboard" -f'// 앱이 이전 꺼도 보임 refresh할때마다 다름
-                sh ' pm2 restart "dashboard" || pm2 start .output/server/index.mjs -i max --name "dashboard"'
+                sh 'NODE_PORT=3001 pm2 restart "dashboard" || pm2 start .output/server/index.mjs -i max --name "dashboard"'
                 sh 'pm2 save'
             }
         }
