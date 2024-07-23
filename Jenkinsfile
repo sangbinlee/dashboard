@@ -43,12 +43,18 @@ pipeline {
         //     sh 'npm run unit'
         //   }
         // }
-        stage('Build') {
+        stage('dev') {
           steps {
-            echo 'dashboard building the application...  now....'
-            sh 'npm run build'
+            echo 'sales building the application...  now....'
+            sh 'pm2 start npm run dev'
           }
         }
+        // stage('Build') {
+        //   steps {
+        //     echo 'dashboard building the application...  now....'
+        //     sh 'npm run build'
+        //   }
+        // }
         // stage('build') {
         //     steps {
         //         echo 'building the application...'
@@ -68,17 +74,17 @@ pipeline {
                 echo 'dashboard deploying the application...'
             }
         }
-        stage('run') {
-            steps {
-                echo 'dashboard run the application... by node 명령  important https://jenkins.sodi9.store/github-webhook/'
-                echo 'dashboard run the application... by 백그라운드 로 실행해야함'
-                echo 'dashboard run the application... by node .output/server/index.mjs'
-                // sh 'node .output/server/index.mjs'
-                // sh 'export BUILD_ID=dontKillMe'
-                // sh 'pm2 start .output/server/index.mjs -i max --name "dashboard" -f'// 앱이 이전 꺼도 보임 refresh할때마다 다름
-                sh 'NODE_ENV=production NODE_PORT=3001 pm2 restart "dashboard" || pm2 start .output/server/index.mjs -i max --name "dashboard"'
-                sh 'pm2 save'
-            }
-        }
+        // stage('run') {
+        //     steps {
+        //         echo 'dashboard run the application... by node 명령  important https://jenkins.sodi9.store/github-webhook/'
+        //         echo 'dashboard run the application... by 백그라운드 로 실행해야함'
+        //         echo 'dashboard run the application... by node .output/server/index.mjs'
+        //         // sh 'node .output/server/index.mjs'
+        //         // sh 'export BUILD_ID=dontKillMe'
+        //         // sh 'pm2 start .output/server/index.mjs -i max --name "dashboard" -f'// 앱이 이전 꺼도 보임 refresh할때마다 다름
+        //         sh 'NODE_ENV=production NODE_PORT=3001 pm2 restart "dashboard" || pm2 start .output/server/index.mjs -i max --name "dashboard"'
+        //         sh 'pm2 save'
+        //     }
+        // }
     }
 }
